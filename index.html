@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ig e dpp</title>
+</head>
+<body>
+    
+    <input type="date" name="" id="dum" >
+    <button onclick="teste()">Clique</button>
+
+    <div id="resultado"></div>
+
+</body>
+
+<script>
+
+
+    function teste(){
+        
+        const inputDum = document.querySelector('#dum').value;
+        let resultado = document.querySelector('#resultado');
+
+        let dum = new Date(inputDum + 'T00:00:00');
+        let dpp = new Date(dum);
+        let diasParto = 280;
+
+        let diasIg = ((new Date() - new Date(dum))/ (1000 * 60 * 60 * 24));
+        let semanasIg = Math.floor(diasIg / 7);
+        let restoDiasIg = Math.floor(((diasIg / 7) % 1) * 7);
+
+        let ig = `${semanasIg} semanas e ${restoDiasIg} dias`
+
+        dpp.setDate(dpp.getDate() + 280);
+
+        
+    // Adicione zero à esquerda para dias e meses menores que 10
+    let diaDPP = dpp.getDate().toString().padStart(2, '0');
+    let mesDPP = (dpp.getMonth() + 1).toString().padStart(2, '0'); // Lembre-se que os meses começam em 0 no JavaScript
+
+    console.log(ig);
+
+    resultado.innerHTML = null;
+
+    resultado.innerHTML += `<p> Idade Gestacional: ${ig} </p>`;
+    resultado.innerHTML += `<p> DPP: ${diaDPP}/${mesDPP}/${dpp.getFullYear()}  </p>`;
+
+
+
+
+
+    }
+
+
+
+</script>
+
+</html>
